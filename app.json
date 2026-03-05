@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Local-send",
-    "slug": "Local-send",
+    "slug": "local-send",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "df1fdf3e-622b-41c6-ac88-b6574baaae28"
+      }
+    },
+    "owner": "derrickdev"
   }
 }
