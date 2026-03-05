@@ -26,7 +26,7 @@ export default function QuickActionsComponent() {
               onPress={() => navigation.navigate(item.screen)}
             >
               <View style={styles.actionIconWrap}>
-                <Ionicons name={item.icon as any} size={22} color="#4F46E5" />
+                <Ionicons name={item.icon as any} size={25} color="#4F46E5" />
               </View>
               <Text style={styles.actionLabel}>{item.label}</Text>
             </TouchableOpacity>
@@ -39,8 +39,19 @@ export default function QuickActionsComponent() {
 const styles = StyleSheet.create({
   section:      { marginBottom: 16 },
   sectionTitle: { fontSize: 17, fontWeight: "700", marginBottom: 12, color: "#0F172A" },
-  actionsRow:   { flexDirection: "row", justifyContent: "space-between" },
-  actionItem:   { alignItems: "center" },
-  actionIconWrap: { width: 40, height: 40, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(79, 70, 229, 0.1)" },
-  actionLabel:    { fontSize: 12, fontWeight: "600", marginTop: 4, color: "#4F46E5" },
+  actionsRow: { flexDirection: "row", justifyContent: "space-between" },
+  actionItem: {
+    backgroundColor: "#fff",
+    width: "22%",
+    paddingVertical: 16,
+    alignItems: "center",
+    borderRadius: 18,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  actionIconWrap: { justifyContent: "center", alignItems: "center" },
+  actionLabel: { fontSize: 11, fontWeight: "600", color: "#374151" },
 });
