@@ -1,35 +1,67 @@
-import { Tabs } from 'expo-router';
+// MyTabs.tsx
 import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import HomeScreen from './Home/HomeScreen';
+import SendScreen from './send/SendScreen';
+import HistoryScreen from './History/HistoryScreen';
+import SettingsScreen from './Settings/SettingsScreen';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const Tab = createBottomTabNavigator();
 
+export default function MyTabs() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false, 
+        tabBarShowLabel: true,
+        tabBarActiveTintColor: '#4F46E5', 
+        tabBarInactiveTintColor: 'gray',   
+        tabBarStyle: {
+          height: 65,
+          paddingBottom: 10,
+          paddingTop: 10,
+          backgroundColor: '#fff',
+          borderTopWidth: 0,
+          elevation: 8,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 3 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3,
+        },
+        tabBarIcon: ({ focused, color }) => {
+                    
+          let iconName: keyof typeof Ionicons.glyphMap;
+
+          const iconSize = 28;
+
+          switch (route.name) {
+            case 'Home':
+              iconName = focused ? 'home' : 'home-outline';
+              break;
+            case 'Send':
+              iconName = focused ? 'send' : 'send-outline';
+              break;
+            case 'History':
+              iconName = focused ? 'time' : 'time-outline';
+              break;
+            case 'Settings':
+              iconName = focused ? 'settings' : 'settings-outline';
+              break;
+
+            default:
+              iconName = 'home'
+          }
+
+          return <Ionicons name={iconName} size={iconSize} color={color} />;
+        },
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Send" component={SendScreen} />
+      <Tab.Screen name="History" component={HistoryScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 }
